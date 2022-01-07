@@ -1,0 +1,63 @@
+{% extends "paginas/padre.html" %}
+{% load static %}
+{% block titulo %}
+    Acerca de nosotros
+{% endblock %}
+{% block subtitulo %}
+    Presentación de cada integrante del grupo
+{% endblock %}
+{% block contenido %}
+<!-- CONTENIDO CRISTO GARCÍA -->
+    <div class="row">
+        <!-- INFORMACION -->
+        <div class="col-8">
+            <h5 class="my-0 py-0">Cristo García:</h5>
+            <p class="my-2">Analista programador titulado de Instituto INACAP de Chile, apasionado por tocar la batería,
+            principalmente del género del Metal nacen todas mis creaciones,
+            dentro de lo laboral me interesa mucho el tema del Desarrollo FullStack,
+            siempre estoy en constante aprendizaje y trato de ser cada día mejor que el anterior</p>
+        </div><!--FIN INFORMACION -->
+        <!-- IMAGEN -->
+        <div class="col-4">
+            <img class="img-fluid rounded-circle py-5" src="https://media-exp1.licdn.com/dms/image/C5603AQHwfkSzLATaXA/profile-displayphoto-shrink_800_800/0/1591744401441?e=1646870400&v=beta&t=Vo7xZVeJIZJhZd-zSWBN9V-IMMHGIBd8DkAVCcBsPr0" />
+        </div> <!-- FIN IMAGEN -->
+
+        <!-- BOTONERA -->
+        <div class="col-12">
+            <ul class="list-inline text-center">
+                <li class="list-inline-item">
+                    <a href="#!" onClick="alert('Mi usuario de discord es: cristo.G#2243'); return false;">
+                        <span class="fa-stack fa-lg">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-discord fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://www.facebook.com/vaisallo1/">
+                        <span class="fa-stack fa-lg">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://www.linkedin.com/in/cristo-garc%C3%ADa-molina-9a2191150/">
+                        <span class="fa-stack fa-lg">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-linkedin-in fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+                <li class="list-inline-item">
+                    <a target="_blank" href="https://github.com/cristongm">
+                        <span class="fa-stack fa-lg">
+                            <i class="fas fa-circle fa-stack-2x"></i>
+                            <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div><!-- FIN BOTONERA -->
+    </div><!--FIN CONTENIDO CRISTO GARCÍA -->
+{% endblock %}

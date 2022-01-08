@@ -1,0 +1,24 @@
+{% extends "paginas/padre.html" %}
+
+
+{% load static %}
+
+    {% block titulo %}
+        <h1 class="mb-1">Tratamientos Odontologicos</h1>
+        <br>
+        <hr size="8px" color="black" />
+        <br>
+        <h2>Acá tenemos todos los Tratamientos:</h2>
+    {% endblock %}
+
+      {% block contenido %}
+        <ul>
+        {% for tratamiento in object_list %}
+        <li>
+        <h3>Tratamiento: {{ tratamiento.tratamiento }}</h3>
+        <p><a href="{% url 'detalleTratamientos' tratamiento.id %}">Ver más información</a></p>
+        
+        </li>
+        {% endfor %}
+        </ul>
+      {% endblock %}

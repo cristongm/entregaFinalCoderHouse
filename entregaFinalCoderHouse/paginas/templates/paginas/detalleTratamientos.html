@@ -1,0 +1,57 @@
+{% extends "paginas/padre.html" %}
+
+
+{% load static %}
+
+        {% block titulo %}
+            <h1 class="mb-1">Detalle del Tratamiento</h1>
+            <br>
+            <hr size="8px" color="black" />
+            <br>
+            <h2>Acá tenemos el detalle del Tratamiento:</h2>
+        {% endblock %}
+
+
+        {% block contenido %}
+
+
+          <h5 class="my-0 py-0"><li>Nombre del Tratamiento:</li></h5>  <i> {{ tratamientoodontologico.tratamiento }}</i>
+          <h5 class="my-2"><li>Descripcion del Tratamiento:</li></h5>  <i> {{ tratamientoodontologico.contenido }}</i></p>
+
+          {% if tratamientoodontologico.tratamiento == "Ortodoncia" %}
+          <div class="col-4">
+            <img class="img-fluid rounded-circle py-5" src="https://www.teeth22.com/wp-content/uploads/2018/11/cuidar-los-dientes-durante-tratamiento-ortodoncia-1024x511.jpg" />
+          </div> <!-- FIN IMAGEN -->
+          {% endif %}
+          {% if tratamientoodontologico.tratamiento == "Endodoncia" %}
+          <div class="col-4">
+            <img class="img-fluid rounded-circle py-5" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Root_Canal_Illustration_Molar.svg/1920px-Root_Canal_Illustration_Molar.svg.png" />
+          </div> <!-- FIN IMAGEN -->
+          {% endif %}
+          {% if tratamientoodontologico.tratamiento == "Periodoncia" %}
+          <div class="col-4">
+            <img class="img-fluid rounded-circle py-5" src="https://customdental.cat/wp-content/uploads/2020/06/Periodoncia-TEMP-1024x683.jpg" />
+          </div> <!-- FIN IMAGEN -->
+          {% endif %}
+          {% if tratamientoodontologico.tratamiento == "Blanqueamiento Dental" %}
+          <div class="col-4">
+            <img class="img-fluid rounded-circle py-5" src="https://www.clinicadentallarranaga.com/wp-content/uploads/tipos-de-blanqueamiento-dental1-1080x675.jpg" />
+          </div> <!-- FIN IMAGEN -->
+          {% endif %}
+          <p>
+
+            <a href="{% url 'listaTratamientos' %}">Regresar</a>
+
+          </p>
+         
+          <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <div class="small text-center text-muted fst-italic">Autor: {{ tratamientoodontologico.autor }} <br> Fecha: {{ tratamientoodontologico.fecha }}</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        {% endblock %}

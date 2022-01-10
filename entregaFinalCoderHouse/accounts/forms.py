@@ -1,6 +1,6 @@
 from django import forms
 import datetime
-
+from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -25,6 +25,13 @@ class UserRegisterForm(UserCreationForm):
         
         #Saca los mensajes de ayuda
         help_texts = {k:"" for k in fields}
+    def clean_password2(self):
+        # Chequea que las contraseñas coincidan.
+        password1 = self.cleaned_data.get("password1")
+        password2 = self.cleaned_data.get("password2")
+        if password1 and password2 and password1 != password2:
+            raise ValidationError("Las contraseñas no coinciden")
+        return password2
 
     
     

@@ -78,6 +78,10 @@ def register(request):
 
                 username = form.cleaned_data['username']
                 form.save()
+                userid = User.objects.get(username=username)
+                grupo = Group.objects.get(name='Grupo1')
+                grupo.user_set.add(userid)
+
                   
                 return render(request,"paginas/inicio.html" ,  {"mensaje":f"{username} Creado :)"})
 

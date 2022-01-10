@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.generic.edit import CreateView
 from accounts.models import Avatar
-from accounts.forms import UserRegisterForm, AvatarFormulario
+from accounts.forms import UserRegisterForm, AvatarFormulario, UserEditForm
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
@@ -37,8 +37,8 @@ def login_request(request):
         
         form = AuthenticationForm(request, data = request.POST)
         
+        tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
         if form.is_valid():
-            
             usuario = form.cleaned_data.get("username")
             contra = form.cleaned_data.get("password")
             
@@ -47,17 +47,17 @@ def login_request(request):
             if user is not None:
                 
                 login(request, user)
-                tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+                
                 return render(request, "paginas/inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!!!!", "tratamientos" : tratamientos})
                 
             else:
                 
-                return render(request, "paginas/inicio.html", {"mensaje":f"DATOS MALOS :(!!!!"})
+                return render(request, "paginas/inicio.html", {"mensaje":f"DATOS MALOS :(!!!!","tratamientos" : tratamientos})
                 
             
         else:
             
-            return render(request, "paginas/inicio.html", {"mensaje":f"FORMULARIO erroneo"})
+            return render(request, "paginas/inicio.html", {"mensaje":f"FORMULARIO erroneo","tratamientos" : tratamientos})
             
             
     
@@ -83,8 +83,8 @@ def register(request):
                 grupo.user_set.add(userid)
 
                   
-                return render(request,"paginas/inicio.html" ,  {"mensaje":f"{username} Creado :)"})
-
+                tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+                return render(request, "paginas/inicio.html", {"mensaje":f"{username} Creado :)", "tratamientos" : tratamientos})
 
       else:
                      
@@ -107,11 +107,33 @@ def agregarAvatar(request):
                   avatar = Avatar (user=u, imagen=miFormulario.cleaned_data['imagen']) 
       
                   avatar.save()
-
-                  return render(request, "AppCoder/inicio.html") #Vuelvo al inicio o a donde quieran
+                  tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+                  return render(request, "paginas/inicio.html", {"tratamientos" : tratamientos})
 
       else: 
 
             miFormulario= AvatarFormulario() #Formulario vacio para construir el html
 
       return render(request, "AppCoder/agregarAvatar.html", {"miFormulario":miFormulario})
+
+@login_required
+def editarPerfil(request):
+    usuario = request.user
+    
+    if( request.method == "POST" ):
+        miFormulario = UserEditForm(request.POST)
+        
+        if( miFormulario.is_valid()):
+            informacion = miFormulario.cleaned_data
+            usuario.email = informacion['email']
+            usuario.password1 = informacion['password1']
+            usuario.password2 = informacion['password2']
+            usuario.set_password(informacion['password1'])
+            usuario.save()
+            tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+            return render(request, "paginas/inicio.html", {"mensaje":f"Perfil editados :)", "tratamientos" : tratamientos})
+
+    else:
+        miFormulario = UserEditForm(initial={"email": usuario.email})
+    
+    return render(request, "accounts/editarPerfil.html", {"miFormulario":miFormulario, "usuario": usuario})

@@ -29,9 +29,15 @@
                     <ul class="navbar-nav ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Inicio' %}">Inicio</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'listaTratamientos' %}">Tratamientos</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Messages' %}">Ver Mensajes</a></li>
                         <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'About' %}">Acerca de nosotros</a></li>
-                        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Login' %}">Iniciar sesión</a></li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Messages' %}">Ver Mensajes</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'EditarPerfil' %}">Editar Perfil</a></li>
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Logout' %}">Cerrar sesión</a></li>
+                            <li class="nav-item"><span class="badge" style="margin-top:19px;">Bienvenido {{user.username}}</span></li>
+                        {% else %}
+                            <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="{% url 'Login' %}">Iniciar sesión</a></li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>

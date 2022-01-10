@@ -126,12 +126,10 @@ def editarPerfil(request):
         if( miFormulario.is_valid()):
             informacion = miFormulario.cleaned_data
             usuario.email = informacion['email']
-            usuario.password1 = informacion['password1']
-            usuario.password2 = informacion['password2']
             usuario.set_password(informacion['password1'])
             usuario.save()
             tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
-            return render(request, "paginas/inicio.html", {"mensaje":f"Perfil editados :)", "tratamientos" : tratamientos})
+            return render(request, "paginas/inicio.html", {"mensaje":f"Perfil editado :)", "tratamientos" : tratamientos})
 
     else:
         miFormulario = UserEditForm(initial={"email": usuario.email})

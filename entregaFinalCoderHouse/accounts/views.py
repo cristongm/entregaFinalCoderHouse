@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import  CreateView, UpdateView, DeleteView
-
+from paginas.models import TratamientoOdontologico
 
 def inicio(request):
     
@@ -47,8 +47,8 @@ def login_request(request):
             if user is not None:
                 
                 login(request, user)
-                
-                return render(request, "paginas/inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!!!!"})
+                tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+                return render(request, "paginas/inicio.html", {"mensaje":f"BIENVENIDO, {usuario}!!!!", "tratamientos" : tratamientos})
                 
             else:
                 

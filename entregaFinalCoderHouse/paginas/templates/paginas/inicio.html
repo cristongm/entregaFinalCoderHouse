@@ -7,5 +7,21 @@
     Blog consultorio
 {% endblock %}
 {% block contenido %}
-    Sitio sin información momentánea
+    <h3>Ultimos tratamientos</h3>
+    {% if not tratamientos %}
+        Sitio sin información momentánea
+    {% else %}
+        {% for tratamiento in tratamientos %}
+            <div class="post-preview">
+                <a href="{% url 'detalleTratamientos' tratamiento.id %}">
+                    <h2 class="post-title">{{tratamiento.tratamiento}}</h2>
+                </a>
+                <div style="font-size:1rem;"><span class="text-secondary">Por: {{ tratamiento.autor}}</span> | <span class="badge">{{ tratamiento.fecha }}</span></div>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />
+        {% endfor %}
+        <!-- Pager-->
+        <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="{% url 'listaTratamientos' %}">Ver mas tratamientos →</a></div>
+    {% endif %}
 {% endblock %}

@@ -4723,6 +4723,8 @@ textarea.form-control-lg {
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
+  background-color:#17A2B8;
+  border-radius: 5px;
 }
 .badge:empty {
   display: none;

@@ -8,7 +8,8 @@ from django.views.generic.edit import  CreateView, UpdateView, DeleteView
 # Create your views here.
 def index(request):
     # return HttpResponse("Esto es una prueba del inicio")
-    return render(request, 'paginas/inicio.html')
+    tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+    return render(request, 'paginas/inicio.html', {"tratamientos": tratamientos})
 def inicioPaginas(request):
     # return HttpResponse("Esto es una prueba del inicio")
     return render(request, 'paginas/paginas.html')

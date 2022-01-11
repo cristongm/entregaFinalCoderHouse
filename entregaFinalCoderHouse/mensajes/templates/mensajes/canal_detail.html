@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensaje</title>
+</head>
+<body>
+    <h1>Mensajes del Canal</h1>
+    {% for mensaje in object.canalmensaje_set.all %}
+        {% if request.user == mensaje.usuario %}
+            
+            <p>
+                {{mensaje.texto}}
+                <span>Enviado por ti</span>
+            </p>
+        {% else %}
+            <p>
+                {{mensaje.texto}}
+                <span>{{mensaje.usuario}}</span>
+            </p>
+            
+            
+        {% endif %}
+    {% endfor %}
+    <h1>Usuarios del Canal</h1>
+    {% for usuarios in object.canalusuario_set.all %}
+        <p>{{usuarios.usuario}}</p>
+    {% endfor %}
+    <form action="{{request.path}}" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" value="Enviar" />
+    </form>
+    <a href="{% url 'Messages' %}">Volver atrás</a>
+</body>
+</html>

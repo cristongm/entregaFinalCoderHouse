@@ -1,0 +1,67 @@
+{% extends "paginas/padre.html" %}
+{% block titulo %}
+    <h1 class="mb-1">Mensajería</h1>
+    <br>
+    <hr size="8px" color="black" />
+    <br>
+    <h2>Ver ultimos mensajes recibidos</h2>
+{% endblock %}
+
+{% block contenido %}
+    
+    <div class="form-group">
+        <label for="idUsuarios">Iniciar conversación con:</label>
+        <select id="selectUsername" class="custom-select mx-3" id="idUsuarios">
+            {% for usuario in usuarios %}
+                <option>{{usuario.username}}</option>
+            {% endfor %}
+        </select>
+        <button class="btn btn-primary p-2" id="botonEnviarMensaje">Enviar Mensaje</button>
+    </div>
+    
+    <div class="card mt-3">
+        <div class="card-header">
+            Mensajes anteriores:
+        </div>
+        <ul class="list-group list-group-flush">
+    {% for mensaje in inbox %}
+            
+                {% for second_user in mensaje.canalusuario_set.all %}
+                    <li class="list-group-item py-0">
+                        <div class="card-body py-0">
+                            {% if second_user.usuario == request.user %}
+                            {% else %}
+                                <a href="{% url 'DetailMsg' second_user.usuario %}">
+                                    <h5 class="card-title">{{second_user.usuario}}</h5>
+                                    {% if mensaje.canalmensaje_set.count != 0 %}
+                                        {% with ultimo_mensaje=mensaje.canalmensaje_set.last %}
+                                            <p class="card-text m-0">
+                                                {% if ultimo_mensaje.usuario == request.user %}
+                                                    Tú: 
+                                                {% endif %}
+                                                {{ultimo_mensaje.texto}} | {{ultimo_mensaje.tiempo}}
+                                            </p>
+                                        {% endwith %}
+                                    {% else %}
+                                        <p>No hay mensajes</p>
+                                    {% endif %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    </li>
+                {% endfor %}
+                {% empty %}
+                <h2>No tienes mensajes</h2>
+                {% endfor %}
+            </ul>
+        </div>
+    
+        <script type="text/javascript">
+            function iniciarChat(){
+                const seleccionado = document.getElementById("selectUsername").value;
+                let url = "ms/"+seleccionado
+                window.open(url) 
+            }
+            document.getElementById("botonEnviarMensaje").addEventListener("click", iniciarChat); 
+        </script>
+{% endblock %}

@@ -18,4 +18,8 @@ Cristo García:
 Daiana Diaz:
 - (Completar)
 
-
+## Pasos para iniciar proyecto
+- Clonar el proyecto desde Github
+- Abrir una terminal(cmd) en la carpeta recien clonada
+- Ejecutar comando "cd entregaFinalCoderHouse/" para moverse al directorio del proyecto
+- Ejecutar comando "python manage.py runserver" para iniciar el servidor python

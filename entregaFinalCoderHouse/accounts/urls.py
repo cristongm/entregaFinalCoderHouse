@@ -9,4 +9,5 @@ urlpatterns = [
     path('logout', LogoutView.as_view(template_name='paginas/inicio.html'), name="Logout"), 
     path('agregarAvatar', views.agregarAvatar, name="AgregarAvatar"),
     path('editarPerfil', views.editarPerfil, name="EditarPerfil"),
+    path('eliminarPerfil', views.eliminarPerfil, name="EliminarPerfil"),
 ]

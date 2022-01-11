@@ -4713,6 +4713,14 @@ textarea.form-control-lg {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
 }
+.rounded-block{
+  border-radius: 5px;
+  color:#fff;
+  font-size: 0.75em;
+}
+.small-text{
+  font-size: 0.7em;
+}
 .badge {
   display: inline-block;
   padding: 0.35em 0.65em;

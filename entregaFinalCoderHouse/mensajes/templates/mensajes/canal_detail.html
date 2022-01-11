@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mensaje</title>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,
+        shrink-to-fit=no">
+    <title>Conversando...</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'paginas/assets/favicon.ico' %}" />
+    <!-- Font Awesome icons (free version)-->
+    <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" crossorigin="anonymous"></script>
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{% static 'paginas/css/styles.css' %}" rel="stylesheet" />
 </head>
 <body>
-    <h1>Mensajes del Canal</h1>
-    {% for mensaje in object.canalmensaje_set.all %}
-        {% if request.user == mensaje.usuario %}
-            
-            <p>
-                {{mensaje.texto}}
-                <span>Enviado por ti</span>
-            </p>
-        {% else %}
-            <p>
-                {{mensaje.texto}}
-                <span>{{mensaje.usuario}}</span>
-            </p>
-            
-            
-        {% endif %}
-    {% endfor %}
-    <h1>Usuarios del Canal</h1>
-    {% for usuarios in object.canalusuario_set.all %}
-        <p>{{usuarios.usuario}}</p>
-    {% endfor %}
-    <form action="{{request.path}}" method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <input type="submit" value="Enviar" />
-    </form>
-    <a href="{% url 'Messages' %}">Volver atrás</a>
+    <div class="card w-75" style="margin:auto;">
+        <div class="card-body px-5 pb-0">
+            <h5 class="card-title">
+                {% for usuarios in object.canalusuario_set.all %}
+                    {% if usuarios.usuario != request.user %}
+                        Conversando con: {{usuarios.usuario}}
+                    {% endif %}
+                {% endfor %}
+                
+            </h5>
+            <a href="{% url 'Messages' %}" class="btn btn-danger p-2">Volver atrás</a>
+            <div class="card-text mt-2 mb-0 p-3" style="max-height: 500px;overflow: scroll;overflow-x: hidden; border: 1px solid #ccc;">
+                {% for mensaje in object.canalmensaje_set.all %}
+                    {% if request.user == mensaje.usuario %}
+                        
+                        <div class="row">
+                            <div class="offset-7 col-5 rounded-block bg-primary p-3" style="text-align:justify">
+                                <b>{{mensaje.texto}}</b>
+                            </div>
+                            <div class="row col-12 offset-10">
+                                <span class="small-text text-secondary" style="margin-left: -20px">{{mensaje.tiempo}}</span>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="row">
+                            <div class="col-5 rounded-block bg-secondary p-3 d-flex" style="text-align:justify">
+                                <b>{{mensaje.texto}}</b>                          
+                            </div>
+                            <div class="row col-12">
+                                <span class="small-text text-secondary">{{mensaje.tiempo}}</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <form action="{{request.path}}" method="POST">
+                {% csrf_token %}
+                <div class="col-12 px-5" styl="height:10px;"> {{form.as_p}} </div>
+                <input type="submit" value="Enviar" class="col-2 mx-5 btn btn-primary p-2" />
+                
+            </form>
+        </div>
+    </div>
+    
+    
+    
+    
 </body>
 </html>

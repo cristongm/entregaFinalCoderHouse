@@ -135,3 +135,12 @@ def editarPerfil(request):
         miFormulario = UserEditForm(initial={"email": usuario.email})
     
     return render(request, "accounts/editarPerfil.html", {"miFormulario":miFormulario, "usuario": usuario})
+
+def eliminarPerfil(request):
+    usuarioBorrar = User.objects.get(username=request.user.username)
+    logout(request)
+    usuarioBorrar.delete()
+    
+    tratamientos = TratamientoOdontologico.objects.all().order_by('-fecha')[:5]
+    
+    return render(request, "paginas/inicio.html", {"mensaje":f"Eliminación de perfil exitosa", "tratamientos" : tratamientos})

@@ -23,3 +23,4 @@ Daiana Diaz:
 - Abrir una terminal(cmd) en la carpeta recien clonada
 - Ejecutar comando "cd entregaFinalCoderHouse/" para moverse al directorio del proyecto
 - Ejecutar comando "python manage.py runserver" para iniciar el servidor python
+- Finalmente dirigirse a la direccion "127.0.0.1:8000"

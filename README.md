@@ -18,7 +18,7 @@ Cristo García:
 Daiana Diaz:
 - Creación de app de login, logout y registro de usuario. Junto con sus models, forms, views, urls y template.
 - Blog de Tratamientos y su CRUD a la base de datos con usuario de ADMIN.
-- Grabacion del video funcional de la WEB.
+- Grabacion del video funcional de la WEB. URL: https://web.microsoftstream.com/video/d1bc012e-cfa4-45fa-a4da-bae9e7336f74
 
 ## Pasos para iniciar proyecto
 - Clonar el proyecto desde Github

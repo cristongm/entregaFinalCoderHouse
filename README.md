@@ -4,7 +4,7 @@ El proyecto se trata de un sitio web en el que se listan Tratamientos Odontologi
 Una vez cuando el usuario quiera ser parte de la comunidad puede iniciar sesión o registrarse dentro de la misma sección de "Inicio de Sesión", al ser parte de esta comunidad teniendo la sesión iniciada, tiene la posibilidad de interactuar con la App de Mensajería, donde el usuario puede hablar y chatear con los demás usuarios de nuestra comunidad, adicionalmente puede editar sus datos relevantes de usuario como el E-Mail y cambiar su contraseña y si el usuario no quiere seguir siendo parte de esta comunidad, también tiene la posibilidad de desvincular su perfil.
 
 ## Objetivo del proyecto
-EL objetivo del proyecto es cumplir con los requisitos solicitados para aprobar la entrega final del curso de Python - Django para la institución educativa CoderHouse
+El objetivo del proyecto es cumplir con los requisitos solicitados para aprobar la entrega final del curso de Python - Django para la institución educativa CoderHouse
 
 ## Participantes del proyecto
 Cristo García: 
@@ -16,7 +16,9 @@ Cristo García:
 - Escritura de pruebas unitarias
 
 Daiana Diaz:
-- (Completar)
+- Creación de app de login, logout y registro de usuario. Junto con sus models, forms, views, urls y template.
+- Blog de Tratamientos y su CRUD a la base de datos con usuario de ADMIN.
+- Grabacion del video funcional de la WEB.
 
 ## Pasos para iniciar proyecto
 - Clonar el proyecto desde Github

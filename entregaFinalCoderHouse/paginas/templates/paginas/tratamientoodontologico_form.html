@@ -1,0 +1,23 @@
+{% extends "paginas/padre.html" %}
+
+
+{% load static %}
+
+        {% block contenido %}
+            <h1 class="mb-1">Formulario de Tratamientos</h1>
+        {% endblock %}
+
+
+        {% block contenido2 %}
+
+
+          <form method="POST"> {% csrf_token %}
+
+          {{form.as_p}}
+
+
+          <input type="submit" value="Enviar" />
+
+          </form>
+
+        {% endblock %}

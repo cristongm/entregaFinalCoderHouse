@@ -25,3 +25,20 @@ class TratamientosOdontologicosDetalle(DetailView):
     
     model = TratamientoOdontologico
     template_name = "paginas/detalleTratamientos.html"
+
+class TratamientosOdontologicosCreacion(CreateView):
+    
+    model = TratamientoOdontologico
+    success_url = "/pages/listaTratamientos/" 
+    fields = ["tratamiento", "contenido", "autor", "fecha"]
+     
+class TratamientosOdontologicosUpdate(UpdateView):
+    
+    model = TratamientoOdontologico
+    success_url = "../listaTratamientos/"
+    fields = ["tratamiento", "contenido", "autor", "fecha"]
+  
+class TratamientosOdontologicosDelete(DeleteView):
+    
+    model = TratamientoOdontologico
+    success_url = "../listaTratamientos/"

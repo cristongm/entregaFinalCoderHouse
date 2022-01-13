@@ -1,0 +1,26 @@
+{% extends "paginas/padre.html" %}
+
+
+{% load static %}
+
+        {% block contenido %}
+            <h1 class="mb-1">Confirma el delete</h1>
+        {% endblock %}
+
+
+        {% block contenido2 %}
+
+
+            <form method="post"> {% csrf_token %}
+
+                Estas seguro??? 
+
+                <input type="submit" value="submit" />
+
+
+
+            </form>
+
+         
+
+        {% endblock %}

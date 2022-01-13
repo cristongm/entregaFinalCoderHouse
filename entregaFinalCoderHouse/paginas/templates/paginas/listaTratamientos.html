@@ -16,9 +16,22 @@
         {% for tratamiento in object_list %}
         <h3>Tratamiento: {{ tratamiento.tratamiento }}</h3>
         <div style="font-size:1rem;"><span class="text-secondary">Por: {{ tratamiento.autor}}</span> | <span class="badge">{{ tratamiento.fecha }}</span></div>
-        <p><a href="{% url 'detalleTratamientos' tratamiento.id %}">Ver más información</a></p>
+        <p>
+          <a href="{% url 'detalleTratamientos' tratamiento.id %}">Ver más información</a>
+          {% if user.username == "admin" %}
+          <a href="{% url 'editTratamientos' tratamiento.id %}">Editar</a>
+          <a href="{% url 'deleteTratamientos' tratamiento.id %}">Borrar</a>
+          {%  endif  %}
+        </p>
         
         </li>
         {% endfor %}
         </ul>
+      {% endblock %}
+
+
+      {% block contenido2 %}
+      {% if user.username == "admin"  %}
+      <a href="{% url 'newTratamientos' %}" class="btn btn-success" style="float: right;">Crear Tratamiento</a>
+      {% endif  %}
       {% endblock %}
